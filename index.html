@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chen Tai Chi Wellness</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ── CSS Variables ── */
+    :root {
+      --forest:   #2d4a3e;
+      --deep:     #1a2e27;
+      --sage:     #5c7a6b;
+      --gold:     #b8965a;
+      --gold-lt:  #d4b07a;
+      --cream:    #f5f0e8;
+      --ivory:    #fdfaf4;
+      --charcoal: #2c2c2c;
+      --mist:     #e8e2d6;
+      --white:    #ffffff;
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'Source Sans 3', sans-serif;
+      --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--ivory);
+      color: var(--charcoal);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── Navigation ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(253, 250, 244, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(184, 150, 90, 0.15);
+      transition: var(--transition);
+    }
+    nav.scrolled {
+      padding: 0.8rem 3rem;
+      box-shadow: 0 2px 20px rgba(45, 74, 62, 0.08);
+    }
+    .nav-logo {
+      font-family: var(--ff-display);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--forest);
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+    .nav-logo span {
+      display: block;
+      font-size: 0.65rem;
+      font-family: var(--ff-body);
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .nav-links {
+      display: flex; gap: 2.5rem; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage);
+      transition: color 0.25s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -3px; left: 0; right: 0;
+      height: 1px; background: var(--gold);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--forest);
+    }
+    .nav-links a:hover::after, .nav-links a.active::after {
+      transform: scaleX(1);
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 1.5px;
+      background: var(--forest); transition: var(--transition);
+    }
+
+    /* ── Pages ── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      position: relative; overflow: hidden;
+      padding-top: 80px;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 6rem 4rem 6rem 5rem;
+      position: relative; z-index: 2;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block;
+      width: 40px; height: 1px; background: var(--gold);
+    }
+    .hero h1 {
+      font-family: var(--ff-display);
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--deep);
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em {
+      font-style: italic; color: var(--forest);
+    }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--sage);
+      max-width: 420px; margin-bottom: 3rem;
+      font-weight: 300; line-height: 1.8;
+    }
+    .hero-ctas {
+      display: flex; gap: 1.2rem; flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--forest); color: var(--cream);
+      padding: 0.9rem 2.2rem;
+      font-family: var(--ff-body); font-size: 0.8rem;
+      letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500;
+      border: none; cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--deep); transform: translateY(-1px); }
+    .btn-outline {
+      border: 1px solid var(--gold); color: var(--forest);
+      padding: 0.9rem 2.2rem;
+      font-family: var(--ff-body); font-size: 0.8rem;
+      letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500;
+      cursor: pointer; background: transparent;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+    .btn-outline:hover {
+      background: var(--gold); color: var(--white);
+    }
+    .hero-right {
+      position: relative; overflow: hidden;
+    }
+    .hero-image-wrap {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--forest) 0%, var(--deep) 60%, #0f1c17 100%);
+    }
+    .hero-image-wrap::before {
+      content: '太極';
+      position: absolute; bottom: 3rem; right: 3rem;
+      font-size: 12rem; font-weight: 900;
+      color: rgba(255,255,255,0.04);
+      line-height: 1; letter-spacing: -0.05em;
+    }
+    .hero-image-wrap::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(184,150,90,0.12) 0%, transparent 70%);
+    }
+    .hero-ornament {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 280px; height: 280px;
+      border: 1px solid rgba(184,150,90,0.25);
+      border-radius: 50%;
+      animation: slowRotate 30s linear infinite;
+    }
+    .hero-ornament::before {
+      content: '';
+      position: absolute; inset: 20px;
+      border: 1px solid rgba(184,150,90,0.15);
+      border-radius: 50%;
+    }
+    @keyframes slowRotate { to { transform: translate(-50%,-50%) rotate(360deg); } }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); animation: scrollBounce 2s ease-in-out infinite;
+    }
+    .hero-scroll::after {
+      content: ''; display: block;
+      width: 1px; height: 40px; background: var(--gold); opacity: 0.5;
+    }
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── Sections ── */
+    section { padding: 6rem 5rem; }
+    .section-label {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .section-label::before {
+      content: ''; width: 30px; height: 1px; background: var(--gold);
+    }
+    h2 {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 300; line-height: 1.2;
+      color: var(--deep); margin-bottom: 1.5rem;
+    }
+    h2 em { font-style: italic; color: var(--forest); }
+
+    /* ── Home – What is Tai Chi ── */
+    .intro-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: center;
+    }
+    .intro-text p {
+      color: var(--sage); font-weight: 300; font-size: 1.05rem;
+      margin-bottom: 1.2rem;
+    }
+    .intro-visual {
+      background: var(--cream);
+      aspect-ratio: 4/5;
+      position: relative; overflow: hidden;
+    }
+    .intro-visual-inner {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, var(--forest) 0%, var(--deep) 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .yin-yang {
+      width: 160px; height: 160px;
+      position: relative;
+      animation: slowRotate 20s linear infinite;
+    }
+    .yin-yang svg { width: 100%; height: 100%; }
+
+    /* ── Pillars ── */
+    .pillars-bg { background: var(--cream); }
+    .pillars-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; margin-top: 3rem;
+    }
+    .pillar {
+      background: var(--ivory); padding: 2.5rem;
+      transition: background 0.3s, transform 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .pillar:hover { background: var(--white); transform: translateY(-4px); }
+    .pillar-num {
+      font-family: var(--ff-display); font-size: 4rem; font-weight: 300;
+      color: rgba(184,150,90,0.2); line-height: 1; margin-bottom: 1rem;
+    }
+    .pillar h3 {
+      font-family: var(--ff-display); font-size: 1.4rem; font-weight: 500;
+      color: var(--forest); margin-bottom: 0.8rem;
+    }
+    .pillar p { font-size: 0.92rem; color: var(--sage); font-weight: 300; line-height: 1.7; }
+
+    /* ── About Page ── */
+    .about-hero {
+      background: var(--deep); color: var(--cream);
+      padding: 8rem 5rem 6rem;
+      position: relative; overflow: hidden;
+    }
+    .about-hero::before {
+      content: '陳式';
+      position: absolute; right: 3rem; bottom: 1rem;
+      font-size: 18rem; font-weight: 900; line-height: 1;
+      color: rgba(255,255,255,0.03);
+    }
+    .about-hero .section-label { color: var(--gold-lt); }
+    .about-hero h2 { color: var(--cream); font-size: clamp(2.5rem, 4vw, 4rem); }
+    .about-hero p { color: rgba(245,240,232,0.7); max-width: 600px; font-size: 1.1rem; font-weight: 300; }
+
+    .bio-section {
+      display: grid; grid-template-columns: 340px 1fr;
+      gap: 5rem; align-items: start;
+    }
+    .bio-photo {
+      background: var(--mist);
+      aspect-ratio: 3/4; position: relative;
+      overflow: hidden;
+    }
+    .bio-photo-inner {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, var(--sage) 0%, var(--forest) 100%);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1rem;
+    }
+    .photo-placeholder {
+      font-size: 4rem; opacity: 0.3;
+    }
+    .photo-placeholder-text {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    .bio-photo-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 1.5rem; background: linear-gradient(transparent, rgba(26,46,39,0.9));
+      color: var(--cream); font-family: var(--ff-display); font-size: 1.2rem;
+    }
+    .bio-photo-caption span {
+      display: block; font-family: var(--ff-body); font-size: 0.7rem;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-lt);
+      margin-bottom: 0.3rem;
+    }
+    .bio-content p {
+      color: var(--sage); font-weight: 300; font-size: 1rem;
+      margin-bottom: 1.2rem; line-height: 1.85;
+    }
+    .lineage-bar {
+      background: var(--cream); border-left: 3px solid var(--gold);
+      padding: 1.5rem 2rem; margin: 2rem 0;
+    }
+    .lineage-bar h4 {
+      font-family: var(--ff-display); font-size: 1rem; font-weight: 500;
+      color: var(--forest); margin-bottom: 0.5rem;
+    }
+    .lineage-bar p { font-size: 0.9rem; color: var(--sage); margin: 0; }
+
+    .credentials {
+      display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem;
+    }
+    .credential-tag {
+      border: 1px solid var(--mist); padding: 0.5rem 1.2rem;
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--sage); background: var(--ivory);
+    }
+
+    /* ── Classes Page ── */
+    .classes-intro {
+      background: var(--forest); color: var(--cream);
+      padding: 7rem 5rem 5rem;
+      position: relative; overflow: hidden;
+    }
+    .classes-intro h2 { color: var(--cream); }
+    .classes-intro .section-label { color: var(--gold-lt); }
+    .classes-intro p { color: rgba(245,240,232,0.75); max-width: 580px; font-size: 1.05rem; font-weight: 300; }
+
+    .schedule-section { padding: 5rem; background: var(--ivory); }
+    .schedule-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .class-card {
+      background: var(--cream); border-top: 3px solid var(--gold);
+      padding: 2rem; transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .class-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(45,74,62,0.12);
+    }
+    .class-day {
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.6rem;
+    }
+    .class-name {
+      font-family: var(--ff-display); font-size: 1.5rem; font-weight: 500;
+      color: var(--forest); margin-bottom: 0.3rem;
+    }
+    .class-time {
+      font-size: 0.85rem; color: var(--sage); margin-bottom: 1.2rem;
+    }
+    .class-desc { font-size: 0.9rem; color: var(--sage); font-weight: 300; line-height: 1.7; }
+    .class-level {
+      display: inline-block; margin-top: 1rem;
+      padding: 0.3rem 0.8rem; font-size: 0.65rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      border: 1px solid var(--gold); color: var(--gold);
+    }
+
+    .levels-section { background: var(--deep); color: var(--cream); padding: 5rem; }
+    .levels-section h2 { color: var(--cream); }
+    .levels-section .section-label { color: var(--gold-lt); }
+    .levels-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2rem; margin-top: 3rem;
+    }
+    .level-card {
+      border: 1px solid rgba(184,150,90,0.2);
+      padding: 2rem; transition: border-color 0.3s;
+    }
+    .level-card:hover { border-color: var(--gold); }
+    .level-icon {
+      font-size: 2rem; margin-bottom: 1rem;
+    }
+    .level-card h3 {
+      font-family: var(--ff-display); font-size: 1.3rem;
+      color: var(--gold-lt); margin-bottom: 0.8rem;
+    }
+    .level-card p { font-size: 0.9rem; color: rgba(245,240,232,0.65); font-weight: 300; }
+
+    /* ── Gallery placeholder ── */
+    .gallery-section { padding: 6rem 5rem; }
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1rem; margin-top: 3rem;
+    }
+    .gallery-item {
+      aspect-ratio: 4/3; background: var(--cream);
+      overflow: hidden; position: relative; cursor: pointer;
+    }
+    .gallery-item-inner {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.5s;
+    }
+    .gallery-item:hover .gallery-item-inner { transform: scale(1.05); }
+    .gallery-item:nth-child(1) .gallery-item-inner { background: linear-gradient(135deg, #2d4a3e, #1a2e27); }
+    .gallery-item:nth-child(2) .gallery-item-inner { background: linear-gradient(135deg, #5c7a6b, #2d4a3e); }
+    .gallery-item:nth-child(3) .gallery-item-inner { background: linear-gradient(135deg, #1a2e27, #0f1c17); }
+    .gallery-item:nth-child(4) .gallery-item-inner { background: linear-gradient(135deg, #3d5c4e, #2d4a3e); }
+    .gallery-item:nth-child(5) .gallery-item-inner { background: linear-gradient(135deg, #b8965a, #8a6e3e); }
+    .gallery-item:nth-child(6) .gallery-item-inner { background: linear-gradient(135deg, #2d4a3e, #5c7a6b); }
+    .gallery-placeholder-text {
+      color: rgba(255,255,255,0.2); font-size: 0.7rem;
+      letter-spacing: 0.2em; text-transform: uppercase; text-align: center;
+    }
+
+    /* ── Contact ── */
+    .contact-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 80vh;
+    }
+    .contact-left {
+      background: var(--deep); padding: 7rem 4rem 5rem;
+      color: var(--cream); position: relative; overflow: hidden;
+    }
+    .contact-left::before {
+      content: '聯絡';
+      position: absolute; bottom: 1rem; right: 1rem;
+      font-size: 14rem; font-weight: 900; line-height: 1;
+      color: rgba(255,255,255,0.03);
+    }
+    .contact-left .section-label { color: var(--gold-lt); }
+    .contact-left h2 { color: var(--cream); margin-bottom: 1rem; }
+    .contact-left > p { color: rgba(245,240,232,0.65); font-weight: 300; margin-bottom: 3rem; }
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+    .contact-icon {
+      width: 36px; height: 36px; border: 1px solid rgba(184,150,90,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0; color: var(--gold-lt);
+    }
+    .contact-item-text { font-size: 0.9rem; color: rgba(245,240,232,0.7); line-height: 1.6; }
+    .contact-item-label {
+      display: block; font-size: 0.65rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold-lt); margin-bottom: 0.2rem;
+    }
+
+    .contact-right { padding: 7rem 4rem 5rem; background: var(--ivory); }
+    .contact-right h3 {
+      font-family: var(--ff-display); font-size: 1.8rem; font-weight: 300;
+      color: var(--deep); margin-bottom: 2rem;
+    }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label {
+      display: block; font-size: 0.7rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--sage); margin-bottom: 0.5rem;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 0.85rem 1rem;
+      border: 1px solid var(--mist); background: var(--white);
+      font-family: var(--ff-body); font-size: 0.95rem; color: var(--charcoal);
+      outline: none; transition: border-color 0.3s;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+    .form-group textarea { height: 120px; resize: vertical; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--deep); color: rgba(245,240,232,0.5);
+      padding: 3rem 5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    footer p { font-size: 0.82rem; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a {
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(245,240,232,0.4); transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--gold-lt); }
+    .footer-logo {
+      font-family: var(--ff-display); font-size: 1.2rem;
+      color: rgba(245,240,232,0.3);
+    }
+
+    /* ── Fade-in animation ── */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s, transform 0.7s;
+    }
+    .fade-up.visible {
+      opacity: 1; transform: translateY(0);
+    }
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+    .fade-up:nth-child(5) { transition-delay: 0.4s; }
+    .fade-up:nth-child(6) { transition-delay: 0.5s; }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      nav.scrolled { padding: 0.8rem 1.5rem; }
+      .nav-links { display: none; flex-direction: column; gap: 0;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--ivory); border-bottom: 1px solid var(--mist);
+        padding: 1rem 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 0.8rem 2rem; }
+      .hamburger { display: flex; }
+
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 4rem 2rem; }
+      .hero-right { display: none; }
+      .hero h1 { font-size: 2.8rem; }
+
+      section { padding: 4rem 1.5rem; }
+      .intro-grid, .bio-section, .contact-layout { grid-template-columns: 1fr; }
+      .contact-left::before { display: none; }
+      .levels-grid, .pillars-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .about-hero, .classes-intro, .contact-left, .contact-right { padding: 5rem 1.5rem 3rem; }
+      .schedule-section, .levels-section, .gallery-section { padding: 3rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .levels-grid, .pillars-grid, .gallery-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav id="mainNav">
+  <div class="nav-logo">
+    Chen Tai Chi
+    <span>Wellness Center</span>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#" onclick="showPage('home')" class="active" data-page="home">Home</a></li>
+    <li><a href="#" onclick="showPage('about')" data-page="about">About</a></li>
+    <li><a href="#" onclick="showPage('classes')" data-page="classes">Classes</a></li>
+    <li><a href="#" onclick="showPage('gallery')" data-page="gallery">Gallery</a></li>
+    <li><a href="#" onclick="showPage('contact')" data-page="contact">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ═══════════════ HOME ═══════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Ancient Wisdom · Modern Wellness</div>
+      <h1>Find Balance<br>Through <em>Chen Style</em><br>Tai Chi</h1>
+      <p class="hero-sub">Rooted in centuries of Chinese martial tradition, Chen Tai Chi Wellness offers a path to harmony of body, mind, and spirit for all ages and abilities.</p>
+      <div class="hero-ctas">
+        <button class="btn-primary" onclick="showPage('classes')">View Class Schedule</button>
+        <button class="btn-outline" onclick="showPage('about')">Meet the Instructor</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-image-wrap">
+        <div class="hero-ornament"></div>
+      </div>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </div>
+
+  <!-- What is Tai Chi -->
+  <section style="background: var(--ivory);">
+    <div class="intro-grid">
+      <div class="intro-text fade-up">
+        <div class="section-label">The Practice</div>
+        <h2>What is <em>Chen Tai Chi?</em></h2>
+        <p>Chen-style Tai Chi Chuan is the oldest and original form of Tai Chi, developed in Chen Village, Henan Province, China over 400 years ago. It is characterized by its distinctive combination of slow, flowing movements and explosive bursts of power.</p>
+        <p>Unlike other Tai Chi styles, Chen style retains its martial arts applications while offering profound health benefits — improved balance, reduced stress, enhanced flexibility, and a calm, focused mind.</p>
+        <p>Whether you are seeking healing, fitness, self-defense, or spiritual growth, Chen Tai Chi offers a lifetime of discovery.</p>
+        <button class="btn-primary" onclick="showPage('classes')" style="margin-top:1rem;">Start Your Journey</button>
+      </div>
+      <div class="intro-visual fade-up">
+        <div class="intro-visual-inner">
+          <div class="yin-yang">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="48" fill="rgba(255,255,255,0.08)" stroke="rgba(184,150,90,0.4)" stroke-width="1"/>
+              <path d="M50,2 A48,48,0,0,1,50,98 A24,24,0,0,1,50,50 A24,24,0,0,0,50,2Z" fill="rgba(255,255,255,0.12)"/>
+              <circle cx="50" cy="26" r="12" fill="rgba(255,255,255,0.15)"/>
+              <circle cx="50" cy="74" r="12" fill="rgba(0,0,0,0.15)"/>
+              <circle cx="50" cy="26" r="4" fill="rgba(0,0,0,0.2)"/>
+              <circle cx="50" cy="74" r="4" fill="rgba(255,255,255,0.3)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pillars -->
+  <section class="pillars-bg">
+    <div style="text-align:center; max-width:600px; margin:0 auto 0;">
+      <div class="section-label" style="justify-content:center;">What We Offer</div>
+      <h2>The Four <em>Pillars</em> of Practice</h2>
+    </div>
+    <div class="pillars-grid" style="margin-top:3rem;">
+      <div class="pillar fade-up">
+        <div class="pillar-num">一</div>
+        <h3>Health & Longevity</h3>
+        <p>Gentle, low-impact movement strengthens joints, improves circulation, reduces blood pressure, and builds resilience against aging.</p>
+      </div>
+      <div class="pillar fade-up">
+        <div class="pillar-num">二</div>
+        <h3>Mind & Meditation</h3>
+        <p>Each movement demands focused attention, quieting mental chatter and cultivating a state of mindful presence.</p>
+      </div>
+      <div class="pillar fade-up">
+        <div class="pillar-num">三</div>
+        <h3>Martial Arts</h3>
+        <p>Beneath the graceful exterior lies a complete system of self-defense, rooted in the principles of yielding and redirecting force.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section style="background: var(--forest); text-align:center; padding: 5rem;">
+    <p style="font-size:0.75rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold-lt); margin-bottom:1rem;">Begin Today</p>
+    <h2 style="color:var(--cream); max-width:600px; margin:0 auto 1.5rem;">Your journey of a thousand miles begins with a single step</h2>
+    <p style="color:rgba(245,240,232,0.65); max-width:500px; margin:0 auto 2.5rem; font-weight:300;">New students are always welcome. No prior experience is needed — only an open mind and a willingness to learn.</p>
+    <button class="btn-outline" onclick="showPage('contact')" style="border-color:rgba(184,150,90,0.6); color:var(--cream);">Get in Touch</button>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Chen Tai Chi Wellness</div>
+    <p>© 2025 Chen Tai Chi Wellness. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#" onclick="showPage('about')">About</a>
+      <a href="#" onclick="showPage('classes')">Classes</a>
+      <a href="#" onclick="showPage('contact')">Contact</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<div class="page" id="page-about">
+
+  <div class="about-hero">
+    <div class="section-label">Our Story</div>
+    <h2>Rooted in Tradition,<br><em>Guided by Passion</em></h2>
+    <p>Dedicated to sharing the authentic teachings of Chen-style Tai Chi Chuan with our community.</p>
+  </div>
+
+  <section>
+    <div class="bio-section">
+      <div>
+        <div class="bio-photo">
+          <div class="bio-photo-inner">
+            <div class="photo-placeholder">🥋</div>
+            <div class="photo-placeholder-text">Instructor Photo</div>
+          </div>
+          <div class="bio-photo-caption">
+            <span>Head Instructor</span>
+            [Instructor Name]
+          </div>
+        </div>
+      </div>
+      <div class="bio-content fade-up">
+        <div class="section-label">About the Instructor</div>
+        <h2>[Instructor Name]</h2>
+
+        <p>With over [X] years of dedicated practice and teaching, [Instructor Name] brings a deep understanding of Chen-style Tai Chi to every class. Their journey began under the guidance of [Master/Teacher Name], and they have since trained with masters in China and throughout the United States.</p>
+
+        <p>[Instructor Name] believes that Tai Chi is a lifelong practice — accessible to everyone, from young athletes seeking improved performance to seniors looking for gentle, healing movement.</p>
+
+        <p>Their teaching style emphasizes patience, precision, and the internal principles that make Chen Tai Chi unique: silk-reeling energy, rooting, and the balance of yin and yang in every posture.</p>
+
+        <div class="lineage-bar">
+          <h4>Lineage & Training</h4>
+          <p>Chen Village Tai Chi Chuan · [Generation] Generation Practitioner · Certified by [Certifying Body] · Trained under [Master Name]</p>
+        </div>
+
+        <p>Classes are held in a welcoming, non-competitive environment. [Instructor Name] teaches at [Location Name] and has helped hundreds of students experience the transformative power of this ancient art.</p>
+
+        <div class="credentials">
+          <span class="credential-tag">Chen Style Tai Chi</span>
+          <span class="credential-tag">[X]+ Years Teaching</span>
+          <span class="credential-tag">Certified Instructor</span>
+          <span class="credential-tag">Push Hands</span>
+          <span class="credential-tag">Weapons Forms</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section style="background: var(--cream);">
+    <div style="max-width:700px; margin:0 auto; text-align:center;">
+      <div class="section-label" style="justify-content:center;">Philosophy</div>
+      <h2>The <em>Spirit</em> of Our Practice</h2>
+      <p style="color:var(--sage); font-size:1.05rem; font-weight:300; margin-top:1rem; line-height:1.9;">"Tai Chi is not just a form of exercise — it is a philosophy of life. In learning to yield, we discover true strength. In slowing down, we find clarity. In practice, we come home to ourselves."</p>
+      <p style="margin-top:2rem; font-size:0.85rem; letter-spacing:0.1em; color:var(--gold);">— [Instructor Name]</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Chen Tai Chi Wellness</div>
+    <p>© 2025 Chen Tai Chi Wellness. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('classes')">Classes</a>
+      <a href="#" onclick="showPage('contact')">Contact</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════ CLASSES ═══════════════ -->
+<div class="page" id="page-classes">
+
+  <div class="classes-intro">
+    <div class="section-label">Schedule</div>
+    <h2>Classes for Every<br><em>Level & Goal</em></h2>
+    <p>Whether you are brand new to Tai Chi or have years of experience, we have a class that meets you where you are.</p>
+  </div>
+
+  <div class="schedule-section">
+    <div class="section-label">Weekly Schedule</div>
+    <h2>Upcoming <em>Classes</em></h2>
+    <div class="schedule-grid">
+
+      <div class="class-card fade-up">
+        <div class="class-day">Monday · Wednesday</div>
+        <div class="class-name">Morning Foundation</div>
+        <div class="class-time">⏰ 8:00 AM – 9:00 AM</div>
+        <p class="class-desc">Start your day with slow, meditative Chen form basics. Focus on posture, breathing, and silk-reeling. Perfect for building a strong foundation.</p>
+        <span class="class-level">Beginner</span>
+      </div>
+
+      <div class="class-card fade-up">
+        <div class="class-day">Tuesday · Thursday</div>
+        <div class="class-name">Chen 18-Form</div>
+        <div class="class-time">⏰ 6:00 PM – 7:15 PM</div>
+        <p class="class-desc">A focused study of the Chen 18-Form, blending slow flowing movements with the explosive fajin power unique to Chen style.</p>
+        <span class="class-level">Intermediate</span>
+      </div>
+
+      <div class="class-card fade-up">
+        <div class="class-day">Saturday</div>
+        <div class="class-name">Push Hands & Applications</div>
+        <div class="class-time">⏰ 9:00 AM – 10:30 AM</div>
+        <p class="class-desc">Partner practice exploring the martial applications of Tai Chi. Develop sensitivity, listening energy, and effective self-defense skills.</p>
+        <span class="class-level">All Levels</span>
+      </div>
+
+      <div class="class-card fade-up">
+        <div class="class-day">Sunday</div>
+        <div class="class-name">Open Practice</div>
+        <div class="class-time">⏰ 10:00 AM – 11:30 AM</div>
+        <p class="class-desc">Instructor-supervised open practice session. Review material, ask questions, and work on personal refinement in a relaxed setting.</p>
+        <span class="class-level">All Levels</span>
+      </div>
+
+      <div class="class-card fade-up">
+        <div class="class-day">Wednesday Evening</div>
+        <div class="class-name">Advanced Form & Sword</div>
+        <div class="class-time">⏰ 7:30 PM – 9:00 PM</div>
+        <p class="class-desc">In-depth study of Chen 74-Form and traditional Chen straight sword (jian). Prior experience with Chen forms required.</p>
+        <span class="class-level">Advanced</span>
+      </div>
+
+      <div class="class-card fade-up">
+        <div class="class-day">By Appointment</div>
+        <div class="class-name">Private Instruction</div>
+        <div class="class-time">⏰ Flexible</div>
+        <p class="class-desc">One-on-one sessions tailored to your specific goals — whether accelerating your form, addressing health concerns, or deepening your understanding.</p>
+        <span class="class-level">All Levels</span>
+      </div>
+
+    </div>
+
+    <p style="margin-top:2.5rem; font-size:0.85rem; color:var(--sage); text-align:center;">
+      📍 Location: [Studio Address, City, State] &nbsp;·&nbsp; All classes held at [Location Name]<br>
+      <span style="color:var(--gold);">Contact us to confirm current schedule and register for a free trial class.</span>
+    </p>
+  </div>
+
+  <!-- Levels -->
+  <div class="levels-section">
+    <div style="text-align:center; max-width:600px; margin:0 auto;">
+      <div class="section-label" style="justify-content:center;">Skill Levels</div>
+      <h2>Where Do <em>You</em> Begin?</h2>
+    </div>
+    <div class="levels-grid" style="margin-top:3rem;">
+      <div class="level-card fade-up">
+        <div class="level-icon">🌱</div>
+        <h3>Beginner</h3>
+        <p>No experience needed. We start with standing meditation, basic stances, and the foundational silk-reeling exercises that underpin all of Chen Tai Chi.</p>
+      </div>
+      <div class="level-card fade-up">
+        <div class="level-icon">🌿</div>
+        <h3>Intermediate</h3>
+        <p>Students who know basic forms and are ready to deepen their practice — refining internal energy, transitions, and beginning partner work.</p>
+      </div>
+      <div class="level-card fade-up">
+        <div class="level-icon">🌳</div>
+        <h3>Advanced</h3>
+        <p>Long-form practice, weapons, push hands, and the subtle internal principles that take a lifetime to master. Challenge and refine everything you know.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:3rem;">
+      <button class="btn-primary" onclick="showPage('contact')" style="background:var(--gold); color:var(--deep);">Book a Free Trial Class</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Chen Tai Chi Wellness</div>
+    <p>© 2025 Chen Tai Chi Wellness. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('about')">About</a>
+      <a href="#" onclick="showPage('contact')">Contact</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════ GALLERY ═══════════════ -->
+<div class="page" id="page-gallery">
+
+  <section style="padding-top: 8rem; background:var(--deep); color:var(--cream); padding-bottom:4rem;">
+    <div style="padding: 0 5rem;">
+      <div class="section-label" style="color:var(--gold-lt);">Gallery</div>
+      <h2 style="color:var(--cream);">Glimpses of <em>Our Practice</em></h2>
+      <p style="color:rgba(245,240,232,0.65); max-width:500px; font-weight:300;">A window into our community — classes, demonstrations, workshops, and the quiet beauty of Tai Chi in motion.</p>
+    </div>
+  </section>
+
+  <div class="gallery-section" style="padding-top:3rem;">
+    <div class="gallery-grid">
+      <div class="gallery-item fade-up"><div class="gallery-item-inner"><span class="gallery-placeholder-text">Add your<br>photo here</span></div></div>
+      <div class="gallery-item fade-up"><div class="gallery-item-inner"><span class="gallery-placeholder-text">Add your<br>photo here</span></div></div>
+      <div class="gallery-item fade-up"><div class="gallery-item-inner"><span class="gallery-placeholder-text">Add your<br>photo here</span></div></div>
+      <div class="gallery-item fade-up"><div class="gallery-item-inner"><span class="gallery-placeholder-text">Add your<br>photo here</span></div></div>
+      <div class="gallery-item fade-up"><div class="gallery-item-inner"><span class="gallery-placeholder-text">Add your<br>photo here</span></div></div>
+      <div class="gallery-item fade-up"><div class="gallery-item-inner"><span class="gallery-placeholder-text">Add your<br>photo here</span></div></div>
+    </div>
+    <p style="text-align:center; margin-top:2rem; font-size:0.82rem; color:var(--sage);">Replace the placeholder tiles above with your own photos. Simply swap in &lt;img&gt; tags inside each .gallery-item div.</p>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Chen Tai Chi Wellness</div>
+    <p>© 2025 Chen Tai Chi Wellness. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('classes')">Classes</a>
+      <a href="#" onclick="showPage('contact')">Contact</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════ CONTACT ═══════════════ -->
+<div class="page" id="page-contact">
+
+  <div class="contact-layout" style="padding-top:80px;">
+    <div class="contact-left">
+      <div class="section-label">Get In Touch</div>
+      <h2>We'd Love to<br><em>Hear from You</em></h2>
+      <p>Have questions about classes, skill level, or what to expect? Reach out — we welcome all inquiries.</p>
+
+      <div class="contact-info" style="margin-top:3rem;">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-item-text">
+            <span class="contact-item-label">Location</span>
+            [Studio Address]<br>[City, State ZIP]
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-item-text">
+            <span class="contact-item-label">Phone</span>
+            [Phone Number]
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-item-text">
+            <span class="contact-item-label">Email</span>
+            [email@chentaichiwellness.com]
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div class="contact-item-text">
+            <span class="contact-item-label">Office Hours</span>
+            Mon–Fri: 9:00 AM – 6:00 PM<br>Sat: 9:00 AM – 12:00 PM
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-right">
+      <h3>Send Us a Message</h3>
+      <!-- Replace YOUR@EMAIL.COM with the client's actual email -->
+      <form action="https://formsubmit.co/YOUR@EMAIL.COM" method="POST">
+        <input type="hidden" name="_subject" value="New message from Chen Tai Chi website">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://www.chentaichiwellness.com/thank-you.html">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" name="first_name" placeholder="Jane" required>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" name="last_name" placeholder="Smith" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="jane@example.com" required>
+        </div>
+        <div class="form-group">
+          <label>Phone (optional)</label>
+          <input type="tel" name="phone" placeholder="(555) 000-0000">
+        </div>
+        <div class="form-group">
+          <label>I'm Interested In</label>
+          <select name="interest">
+            <option value="">Select a class type...</option>
+            <option>Beginner Classes</option>
+            <option>Intermediate / Advanced Classes</option>
+            <option>Push Hands</option>
+            <option>Private Instruction</option>
+            <option>Corporate / Group Wellness</option>
+            <option>General Information</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea name="message" placeholder="Tell us a little about yourself and what you're looking for..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%; text-align:center;">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Chen Tai Chi Wellness</div>
+    <p>© 2025 Chen Tai Chi Wellness. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('about')">About</a>
+      <a href="#" onclick="showPage('classes')">Classes</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════ JS ═══════════════ -->
+<script>
+  // Page navigation
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    document.querySelector(`[data-page="${name}"]`).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Close mobile menu
+    document.getElementById('navLinks').classList.remove('open');
+    // Trigger fade-ins
+    setTimeout(triggerFadeIns, 100);
+    return false;
+  }
+
+  // Hamburger
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // Sticky nav
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Fade-in on scroll
+  function triggerFadeIns() {
+    const elements = document.querySelectorAll('.page.active .fade-up');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    elements.forEach(el => observer.observe(el));
+  }
+
+  // Initial trigger
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(triggerFadeIns, 200);
+  });
+</script>
+</body>
+</html>
